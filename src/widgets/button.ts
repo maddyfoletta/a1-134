@@ -38,6 +38,24 @@ class Button extends Widget{
         this.update();
     }
 
+    set label(text: string){
+        this._input = text;
+        this.update()
+    }
+
+    get label(): string {
+        return this._input;
+    }
+
+    set size(sizes: {width: number, height: number}){
+        this.height = sizes.height;
+        this.width = sizes.width;
+    }
+
+    get size(): { width: number, height: number } {
+        return { width: this.width, height: this.height };
+    }
+
     private positionText(){
         let box:Box = this._text.bbox();
         // in TS, the prepending with + performs a type conversion from string to number

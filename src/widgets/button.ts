@@ -15,6 +15,8 @@ class Button extends Widget{
     private defaultFontSize: number = 18;
     private defaultWidth: number = 80;
     private defaultHeight: number = 30;
+    private _clickCallback?: () => void;
+
 
     constructor(parent:Window){
         super(parent);
@@ -50,6 +52,7 @@ class Button extends Widget{
     set size(sizes: {width: number, height: number}){
         this.height = sizes.height;
         this.width = sizes.width;
+        this.update();
     }
 
     get size(): { width: number, height: number } {
@@ -68,7 +71,7 @@ class Button extends Widget{
     
     render(): void {
         this._group = (this.parent as Window).window.group();
-        this._rect = this._group.rect(this.width, this.height);
+        this._rect = this._group.rect(this.width, this.height).radius(6).fill("#ff6e33").stroke("black");
         this._rect.stroke("black");
         this._text = this._group.text(this._input);
         // Set the outer svg element 
@@ -94,43 +97,68 @@ class Button extends Widget{
         
         super.update();
     }
-    
-    pressReleaseState(): void{
-
-        if (this.previousState instanceof PressedWidgetState)
-            this.raise(new EventArgs(this));
-    }
 
     //TODO: implement the onClick event using a callback passed as a parameter
-    onClick(/*TODO: add callback parameter*/):void{}
+    onClick(callback: () => void): void {
+        this._clickCallback = callback;
+    }
+    
 
     
     //TODO: give the states something to do! Use these methods to control the visual appearance of your
     //widget
     idleupState(): void {
-        throw new Error("Method not implemented.");
+        this._rect.fill("#ff6e33");
+        // this._rect.stroke("#ffffff")
     }
+
+    pressReleaseState(): void{
+
+        if (this.previousState instanceof PressedWidgetState){
+            this.raise(new EventArgs(this));
+        }
+
+        if (this._clickCallback) {
+            this._clickCallback();
+        }
+    }
+
     idledownState(): void {
-        throw new Error("Method not implemented.");
+        // this._rect.fill("#a93100");
     }
+
     pressedState(): void {
-        throw new Error("Method not implemented.");
+        this.backcolor = "#ffffff";
+        this._rect.fill(this.backcolor);
+        this._rect.stroke("#ff6e33");
+        console.log("Pressed");
     }
+
     hoverState(): void {
-        throw new Error("Method not implemented.");
+        // this._rect.fill("#ff986e")
+        this.backcolor = "#ff986e";
+        this._rect.fill(this.backcolor);
     }
     hoverPressedState(): void {
-        throw new Error("Method not implemented.");
+        this.backcolor = "#ffd5c0";
+        this._rect.fill(this.backcolor);
     }
     pressedoutState(): void {
-        throw new Error("Method not implemented.");
+        // this.backcolor = "#ff6e33";
+        // this._rect.fill(this.backcolor);
+        this.label = "try again";
+        
     }
     moveState(): void {
-        throw new Error("Method not implemented.");
+        // this.backcolor = "#ffe5dc"; // subtle move indication
+        // this._rect.fill(this.backcolor);
+        // this.label = "try again"
     }
     keyupState(keyEvent?: KeyboardEvent): void {
-        throw new Error("Method not implemented.");
-    }
+        if (keyEvent){
+            console.log(keyEvent.key);
+        }
+    }   
 }
 
 export {Button}

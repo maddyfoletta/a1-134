@@ -22,5 +22,6 @@ btn.label = "Click Me";
 btn.onClick(() => {
     amount++;
     lbl1.text = 'Clicked! x' + amount;
+    btn.label = "Click Again!"
 });
 btn.move(12, 50)

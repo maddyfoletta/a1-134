@@ -93,6 +93,8 @@ class Button extends Widget{
             this.positionText();
 
         if(this._rect != null)
+            this._rect.size(this.width, this.height);
+            this._rect.fill(this.backcolor);
             this._rect.fill(this.backcolor);
         
         super.update();
@@ -135,7 +137,6 @@ class Button extends Widget{
     }
 
     hoverState(): void {
-        // this._rect.fill("#ff986e")
         this.backcolor = "#ff986e";
         this._rect.fill(this.backcolor);
     }
@@ -144,9 +145,8 @@ class Button extends Widget{
         this._rect.fill(this.backcolor);
     }
     pressedoutState(): void {
-        // this.backcolor = "#ff6e33";
+        // this.backcolor = "#c7ffc0";
         // this._rect.fill(this.backcolor);
-        this.label = "try again";
         
     }
     moveState(): void {

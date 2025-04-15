@@ -20,14 +20,14 @@ class Checkbox extends Widget {
     
         // Checkmark ✓
         this._checkmark = parent.window.text("X")
-            .font({ size: 18, family: "Arial" })
+            .font({ size: 18, family: "Tahoma" })
             .fill("#000")
             .hide();
         this._checkmark.click(() => this.toggle());
     
         // Label
         this._label = parent.window.text(this._labelText)
-            .font({ size: 16, family: "Arial" })
+            .font({ size: 16, family: "Tahoma" })
             .fill("#000");
         this._label.click(() => this.toggle());
     
@@ -46,7 +46,6 @@ class Checkbox extends Widget {
         this._label.move(x + 30, y);
     }
 
-    // Public label property
     set label(text: string) {
         this._labelText = text;
         this._label.text(text);
@@ -56,7 +55,6 @@ class Checkbox extends Widget {
         return this._labelText;
     }
 
-    // Public checked property
     set checked(val: boolean) {
         this._checked = val;
         if (val) {
@@ -72,20 +70,18 @@ class Checkbox extends Widget {
         return this._checked;
     }
 
-    // Toggle state
+  
     toggle(): void {
         this.checked = !this.checked;
     }
 
-    // onChange callback setter
     set onChange(handler: (checked: boolean) => void) {
         this._onChange = handler;
     }
 
-    // State change hooks (optional to implement visuals)
     idleupState(): void {}
     idledownState(): void {
-        this.toggle(); // Toggle on click
+        this.toggle();
     }
     pressedState(): void {}
     pressReleaseState(): void {}

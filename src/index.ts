@@ -3,6 +3,7 @@ import {Button} from "./widgets/button"
 import {Heading} from "./widgets/heading"
 import { Checkbox } from "./widgets/checkbox";
 import { CheckboxList } from "./widgets/checkboxGroup";
+import { RadioGroup } from "./widgets/radioButtonGroup";
 
 
 
@@ -26,7 +27,7 @@ btn.onClick(() => {
     lbl1.text = 'Clicked! x' + amount;
     btn.label = "Click Again!"
 });
-btn.move(12, 50)
+btn.move(50, 50)
 
 //checkbox
 // let chk1 = new Checkbox(w);
@@ -37,9 +38,12 @@ btn.move(12, 50)
 // chk2.label = "test2";
 // chk2.move(10, 140);
 
-
 const checkGroup = new CheckboxList(w, ["Apples", "Bananas", "Cherries"]);
-checkGroup.move(10, 150); // ← move the whole group on screen
+checkGroup.move(50, 150); // ← move the whole group on screen
+
+//radio button
+const radios = new RadioGroup(w, ["Small", "Medium", "Large"]);
+radios.move(200, 150);
 
 
 

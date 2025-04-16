@@ -11,7 +11,7 @@ class CheckboxList extends Widget {
 
     constructor(parent: Window, labels: string[]) {
         super(parent);
-        this.role = null; // this is a container, not interactive
+        this.role = null;
         this.createCheckboxes(labels);
     }
 

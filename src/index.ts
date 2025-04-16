@@ -18,18 +18,18 @@ lbl1.tabindex = 1;
 lbl1.fontSize = 16;
 lbl1.move(10,20);
 
-// //button
-// let btn = new Button(w);
-// let amount = 0;
-// btn.tabindex = 2;
-// btn.fontSize = 14;
-// btn.label = "Click Me";
-// btn.onClick(() => {
-//     amount++;
-//     lbl1.text = 'Clicked! x' + amount;
-//     btn.label = "Click Again!"
-// });
-// btn.move(50, 70)
+//button
+let btn = new Button(w);
+let amount = 0;
+btn.tabindex = 2;
+btn.fontSize = 14;
+btn.label = "Click Me";
+btn.onClick(() => {
+    amount++;
+    lbl1.text = 'Clicked! x' + amount;
+    btn.label = "Click Again!"
+});
+btn.move(50, 70)
 
 const checkGroup = new CheckboxList(w, ["Apples", "Bananas", "Cherries"]);
 checkGroup.move(150, 150);

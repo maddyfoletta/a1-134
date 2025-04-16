@@ -8,6 +8,7 @@ class ScrollBar extends Widget {
     private _text: Text;
     private _input: string;
     private _downButton: Rect;
+    private position: Number;
 
     private _trackHeight: number;
     public _thumbHeight: number;
@@ -31,7 +32,6 @@ class ScrollBar extends Widget {
         this.render();
     }
 
-    // Set and get scroll bar height
     set scrollBarHeight(value: number) {
         this._trackHeight = value;
         this.update();
@@ -41,12 +41,10 @@ class ScrollBar extends Widget {
         return this._trackHeight;
     }
 
-    // Get thumb position
     get thumbPosition(): number {
         return this._thumbPosition;
     }
 
-    // Create and render all parts of the scrollbar
     render(): void {
         this._group = (this.parent as Window).window.group();
         this.outerSvg = this._group;
@@ -123,15 +121,24 @@ class ScrollBar extends Widget {
     }
 
     private moveThumbTo(position: number): void {
-        this._thumbPosition = Math.max(0, Math.min(position, this._trackHeight - this._thumbHeight));
+        const clamped = Math.max(0, Math.min(position, this._trackHeight - this._thumbHeight));
+    
+        const direction = clamped > this._thumbPosition ? "down" :
+                          clamped < this._thumbPosition ? "up" : "none";
+    
+        this.position = this._thumbPosition;
+        this._thumbPosition = clamped;
         this.updateThumbPosition();
+    
+        console.log(`Thumb moved ${direction}`);
+    
         this.raise(new EventArgs(this));
         this._onThumbMove(new EventArgs(this));
     }
+    
 
-    // State overrides (optional to style states)
     idleupState(): void {
-        this._thumb.fill("pink");
+        this._thumb.fill("#fff");
     }
     idledownState(): void {}
     pressedState(): void {}

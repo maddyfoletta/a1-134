@@ -42,7 +42,7 @@ class Checkbox extends Widget {
     // Move all elements together
     move(x: number, y: number): void {
         this._box.move(x, y);
-        this._checkmark.move(x - 2, y + 5.5); // slight offset to center
+        this._checkmark.move(x - 2, y + 5.5);
         this._label.move(x + 30, y);
     }
 

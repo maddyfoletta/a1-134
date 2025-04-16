@@ -5,6 +5,7 @@ import { Checkbox } from "./widgets/checkbox";
 import { CheckboxList } from "./widgets/checkboxGroup";
 import { RadioGroup } from "./widgets/radioButtonGroup";
 import { ScrollBar } from "./widgets/scrollbar";
+import { ProgressBar } from "./widgets/progressBar";
 
 
 let w = new Window(window.innerHeight-10,'100%');
@@ -52,4 +53,20 @@ scroll.move(100, 50); // moves the whole bar + thumb
 scroll.onThumbMove((e) => {
   console.log("Thumb position:", scroll.thumbPosition);
 });
+
+//progress bar
+const progress = new ProgressBar(w);
+progress.progressWidth = 300;
+progress.move(100, 400);
+
+progress.onIncrement = (val) => {
+  console.log("Progress is now:", val);
+};
+
+progress.onStateChange = (state) => {
+  console.log("State changed:", state);
+};
+
+progress.increment(75); // logs progress and state
+
 

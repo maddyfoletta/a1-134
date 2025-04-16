@@ -276,6 +276,9 @@ class EventArgs {
 }
 
 abstract class Component implements IAccessibility {
+    group(): G {
+        throw new Error("Method not implemented.");
+    }
     public tabindex: number = 0;
     private _handlers: { (event: EventArgs): void; }[] = [];
     protected _isselectable: boolean;
